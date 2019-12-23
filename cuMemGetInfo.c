@@ -21,9 +21,9 @@ CUresult cuMemGetInfo ( size_t* free, size_t* total )
 
 CUresult cuMemGetInfo_v2 ( size_t* free, size_t* total )
 {
-    if ( NULL != getenv(GPU_MEMORY) )
+    if ( NULL != getenv( "GPU_MEMORY" ) )
     {
-        *free = atoi( getenv(GPU_MEMORY) ) * MiB;
+        *free = atoi( getenv( "GPU_MEMORY" ) ) * MiB;
     }
     else
     {
