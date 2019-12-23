@@ -1,7 +1,12 @@
 #include <stdio.h>
 #include <stddef.h>
 #include <stdint.h>
-#include "cuMemGetInfo.h"
+
+typedef enum {
+
+  CUDA_SUCCESS = 0
+
+}CUresult;
 
 #define MiB 1048576
 
