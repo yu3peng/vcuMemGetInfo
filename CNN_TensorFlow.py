@@ -1,4 +1,3 @@
-```python
 import tensorflow as tf
 #导入TensorFlow工具包并简称为tf
  
@@ -60,6 +59,3 @@ with tf.Session() as sess:
     print(sess.run(w1))
     print(sess.run(w2))
     #打印出训练之后神经网络参数的值
-```
-
-From [训练神经网络的简单例子](https://blog.csdn.net/Jaster_wisdom/article/details/78018653)
