@@ -25,7 +25,7 @@ CUresult cuMemGetInfo_v2 ( size_t* free, size_t* total )
     }
     else
     {
-        *free = 20 * MiB;
+        *free = 300 * MiB;
     }
   
     *total = *free * 2;
