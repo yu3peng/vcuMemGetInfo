@@ -6,10 +6,10 @@ typedef enum {
 
   CUDA_SUCCESS = 0
 
-}CUresult;
+} CUresult;
 
 #define MiB 1048576
-
+/* 
 CUresult cuMemGetInfo ( size_t* free, size_t* total )
 {
     *total = 100 * MiB;
@@ -17,11 +17,20 @@ CUresult cuMemGetInfo ( size_t* free, size_t* total )
 
     return CUDA_SUCCESS;
 }
+*/
 
 CUresult cuMemGetInfo_v2 ( size_t* free, size_t* total )
 {
-    *total = 200 * MiB;
-    *free = 20 * MiB;
+    if ( NULL != getenv(GPU_MEMORY) )
+    {
+        *free = atoi( getenv(GPU_MEMORY) ) * MiB;
+    }
+    else
+    {
+        *free = 20 * MiB;
+    }
+  
+    *total = *free * 2;
 
     return CUDA_SUCCESS;
 }
