@@ -22,7 +22,7 @@ CUresult cuMemGetInfo_v2 ( size_t* free, size_t* total )
     if ( NULL != getenv( "GPU_MEMORY" ) )
     {
         *free = atoi( getenv( "GPU_MEMORY" ) ) * MiB;
-        printf(" GPU_MEMORY env is s% MiB.\n", getenv( "GPU_MEMORY" ) );
+        printf(" GPU_MEMORY env is %s MiB.\n", getenv( "GPU_MEMORY" ) );
     }
     else
     {
