@@ -9,6 +9,7 @@ typedef enum {
 } CUresult;
 
 #define MiB 1048576
+
 /* 
 CUresult cuMemGetInfo ( size_t* free, size_t* total )
 {
