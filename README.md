@@ -18,16 +18,62 @@
    
 4. Install docker.
 
-4.1 Docker version >= 19.03 
+5 Docker version >= 19.03 
 
   docker run -v /home/gpu:/home/gpu --gpus all,capabilities=utilities -it tensorflow/tensorflow:1.13.1-gpu-py3 bash
 
-4.2 Docker version < 19.03
+6 Docker version < 19.03
 
-  docker run --device /dev/nvidia0:/dev/nvidia0 --device /dev/nvidiactl:/dev/nvidiactl --device /dev/nvidia-uvm:/dev/nvidia-uvm --device /dev/nvidia-uvm-tools:/dev/nvidia-uvm-tools -v /usr/bin/:/usr/bin -v /usr/lib64:/usr/lib64 -v /home/gpu:/home/gpu -it tensorflow/tensorflow:1.13.1-gpu-py3 bash
+#################################################################
+docker run --device /dev/nvidia0:/dev/nvidia0 --device /dev/nvidiactl:/dev/nvidiactl --device /dev/nvidia-uvm:/dev/nvidia-uvm --device /dev/nvidia-uvm-tools:/dev/nvidia-uvm-tools -v /usr/bin/nvidia-driver-file*:/usr/binnvidia-driver-file* -v /usr/lib64/nvidia-driver-file*:/usr/lib/nvidia-driver-file* -v /home/gpu:/home/gpu -it tensorflow/tensorflow:1.13.1-gpu-py3 bash
+#################################################################
 
-5. export LD_PRELOAD=/home/gpu/vcuMemGetInfo.so
+get install driver file name in /usr/bin with this shell command (change XXXX-XX-XX XX:XX with the time of installing driver)
 
-6. export GPU_MEMORY=300
+```shell
+ls /usr/bin -l --time-style=long-iso | grep "XXXX-XX-XX XX:XX" | awk '{print $8}' > usr_bin-nvidia-driver
+```
 
-7. python CNN_TensorFlow.py
+get install driver file name in /usr/lib64 with this shell command (change XXXX-XX-XX XX:XX with the time of installing driver)
+
+```shell
+ls /usr/lib64 -l --time-style=long-iso | grep "2020-01-09 16:43" | awk '{print $8}' > usr_lib64-nvidia-driver
+```
+
+Make run_container.sh like:
+
+```shell
+#!/bin/bash
+
+echo "docker run --device /dev/nvidia0:/dev/nvidia0 --device /dev/nvidiactl:/dev/nvidiactl --device /dev/nvidia-uvm:/dev/nvidia-uvm --device /dev/nvidia-uvm-tools:/dev/nvidia-uvm-tools"" \\" > container_driver.sh
+
+usr_lib64=""
+for line in `cat usr_lib64-nvidia-driver`
+do
+    usr_lib64="$usr_lib64 -v /usr/lib64/$line:/usr/lib/$line"
+done
+echo $usr_lib64" \\" >> container_driver.sh
+
+usr_bin=""
+for line in `cat usr_bin-nvidia-driver`
+do
+    usr_bin="$usr_bin -v /usr/bin/$line:/usr/bin/$line"
+done
+echo $usr_bin" \\" >> container_driver.sh
+
+echo " -v /home/gpu:/home/gpu -it tensorflow/tensorflow:1.13.1-gpu-py3 bash" >> container_driver.sh
+
+chmod 755 container_driver.sh
+./container_driver.sh
+```
+
+```shell
+chmod 755 run_container.sh
+./run_container.sh
+```
+
+7. export LD_PRELOAD=/home/gpu/vcuMemGetInfo.so
+
+8. export GPU_MEMORY=300
+
+9. python CNN_TensorFlow.py
