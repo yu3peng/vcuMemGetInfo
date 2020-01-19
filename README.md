@@ -89,6 +89,8 @@ chmod 755 run_container.sh
 6) Run business in container
 
 ```shell
+cd /home/gpu
+
 export LD_PRELOAD=/home/gpu/vcuMemGetInfo.so
 
 export GPU_MEMORY=300
