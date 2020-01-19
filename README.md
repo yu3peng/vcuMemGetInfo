@@ -1,30 +1,40 @@
 # vcuMemGetInfo
 
-1. Select NVIDIA GPU driver on https://www.nvidia.com/Download/index.aspx, then download it, assume to be 418.87.00.
+1 Select NVIDIA GPU driver on https://www.nvidia.com/Download/index.aspx, then download it, assume to be 418.87.00.
 
-2. chmod 755 NVIDIA-Linux-x86_64-418.87.00.run
+2 Install GPU driver
 
-   ./NVIDIA-Linux-x86_64-418.87.00.run -s
+```shell
+chmod 755 NVIDIA-Linux-x86_64-418.87.00.run
 
-3. mkdir -p /home/gpu
+./NVIDIA-Linux-x86_64-418.87.00.run -s
+```
 
-   cd /home/gpu
+3 Prepare vcuMemGetInfo.so and business file
+
+```shell
+mkdir -p /home/gpu
+
+cd /home/gpu
    
-   vi CNN_TensorFlow.py
+vi CNN_TensorFlow.py
    
-   vi cuMemGetInfo.c
+vi cuMemGetInfo.c
    
-   gcc cuMemGetInfo.c -fPIC -shared -o vcuMemGetInfo.so   
-   
-4. Install docker.
+gcc cuMemGetInfo.c -fPIC -shared -o vcuMemGetInfo.so   
+```
 
-5. Run container with GPU
+4 Install docker.
 
-5.1. Docker version >= 19.03 
+5 Run container with GPU
 
-  docker run -v /home/gpu:/home/gpu --gpus all,capabilities=utilities -it tensorflow/tensorflow:1.13.1-gpu-py3 bash
+5.1 Docker version >= 19.03 
 
-5.2. Docker version < 19.03
+```shell
+docker run -v /home/gpu:/home/gpu --gpus all,capabilities=utilities -it tensorflow/tensorflow:1.13.1-gpu-py3 bash
+```
+
+5.2 Docker version < 19.03
 
 #################################################################
 
@@ -32,13 +42,13 @@ docker run --device /dev/nvidia0:/dev/nvidia0 --device /dev/nvidiactl:/dev/nvidi
 
 #################################################################
 
-get install driver file name in /usr/bin with this shell command (change XXXX-XX-XX XX:XX with the time of installing driver)
+Get install driver file name in /usr/bin with this shell command (change XXXX-XX-XX XX:XX with the time of installing driver)
 
 ```shell
 ls /usr/bin -l --time-style=long-iso | grep "XXXX-XX-XX XX:XX" | awk '{print $8}' > usr_bin-nvidia-driver
 ```
 
-get install driver file name in /usr/lib64 with this shell command (change XXXX-XX-XX XX:XX with the time of installing driver)
+Get install driver file name in /usr/lib64 with this shell command (change XXXX-XX-XX XX:XX with the time of installing driver)
 
 ```shell
 ls /usr/lib64 -l --time-style=long-iso | grep "2020-01-09 16:43" | awk '{print $8}' > usr_lib64-nvidia-driver
@@ -76,8 +86,12 @@ chmod 755 run_container.sh
 ./run_container.sh
 ```
 
-6. export LD_PRELOAD=/home/gpu/vcuMemGetInfo.so
+6. In conatainer run business file
 
-7. export GPU_MEMORY=300
+```shell
+export LD_PRELOAD=/home/gpu/vcuMemGetInfo.so
 
-8. python CNN_TensorFlow.py
+export GPU_MEMORY=300
+
+python CNN_TensorFlow.py
+```
