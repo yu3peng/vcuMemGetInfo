@@ -1,5 +1,4 @@
 # ls /usr/bin -l --time-style=long-iso | grep "XXXX-XX-XX XX:XX" | awk '{print $8}'
-
 nvidia-bug-report.sh
 nvidia-cuda-mps-control
 nvidia-cuda-mps-server
