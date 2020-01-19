@@ -48,10 +48,10 @@ Get install driver file name in /usr/bin with this shell command (change XXXX-XX
 ls /usr/bin -l --time-style=long-iso | grep "XXXX-XX-XX XX:XX" | awk '{print $8}' > usr_bin-nvidia-driver
 ```
 
-Get install driver file name in /usr/lib64 with this shell command (change XXXX-XX-XX XX:XX with the time of installing driver)
+Get install driver file name in /usr/lib with this shell command (change XXXX-XX-XX XX:XX with the time of installing driver)
 
 ```shell
-ls /usr/lib64 -l --time-style=long-iso | grep "2020-01-09 16:43" | awk '{print $8}' > usr_lib64-nvidia-driver
+ls /usr/lib -l --time-style=long-iso | grep "2020-01-09 16:43" | awk '{print $8}' > usr_lib-nvidia-driver
 ```
 
 Make run_container.sh like:
@@ -61,12 +61,12 @@ Make run_container.sh like:
 
 echo "docker run --device /dev/nvidia0:/dev/nvidia0 --device /dev/nvidiactl:/dev/nvidiactl --device /dev/nvidia-uvm:/dev/nvidia-uvm --device /dev/nvidia-uvm-tools:/dev/nvidia-uvm-tools"" \\" > container_driver.sh
 
-usr_lib64=""
-for line in `cat usr_lib64-nvidia-driver`
+usr_lib=""
+for line in `cat usr_lib-nvidia-driver`
 do
-    usr_lib64="$usr_lib64 -v /usr/lib64/$line:/usr/lib/$line"
+    usr_lib="$usr_lib -v /usr/lib/$line:/usr/lib/$line"
 done
-echo $usr_lib64" \\" >> container_driver.sh
+echo $usr_lib" \\" >> container_driver.sh
 
 usr_bin=""
 for line in `cat usr_bin-nvidia-driver`
