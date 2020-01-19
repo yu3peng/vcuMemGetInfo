@@ -1,8 +1,8 @@
 # vcuMemGetInfo
 
-1 Select NVIDIA GPU driver on https://www.nvidia.com/Download/index.aspx, then download it, assume to be 418.87.00.
+1) Select NVIDIA GPU driver on https://www.nvidia.com/Download/index.aspx, then download it, assume to be 418.87.00.
 
-2 Install GPU driver
+2) Install GPU driver in host
 
 ```shell
 chmod 755 NVIDIA-Linux-x86_64-418.87.00.run
@@ -10,7 +10,7 @@ chmod 755 NVIDIA-Linux-x86_64-418.87.00.run
 ./NVIDIA-Linux-x86_64-418.87.00.run -s
 ```
 
-3 Prepare vcuMemGetInfo.so and business file
+3) Prepare vcuMemGetInfo.so and business file in host
 
 ```shell
 mkdir -p /home/gpu
@@ -24,17 +24,17 @@ vi cuMemGetInfo.c
 gcc cuMemGetInfo.c -fPIC -shared -o vcuMemGetInfo.so   
 ```
 
-4 Install docker.
+4) Install docker.
 
-5 Run container with GPU
+5) Run container with GPU
 
-5.1 Docker version >= 19.03 
+5.1) Docker version >= 19.03 
 
 ```shell
 docker run -v /home/gpu:/home/gpu --gpus all,capabilities=utilities -it tensorflow/tensorflow:1.13.1-gpu-py3 bash
 ```
 
-5.2 Docker version < 19.03
+5.2) Docker version < 19.03
 
 #################################################################
 
@@ -86,7 +86,7 @@ chmod 755 run_container.sh
 ./run_container.sh
 ```
 
-6. In conatainer run business file
+6) Run business in container
 
 ```shell
 export LD_PRELOAD=/home/gpu/vcuMemGetInfo.so
@@ -95,3 +95,5 @@ export GPU_MEMORY=300
 
 python CNN_TensorFlow.py
 ```
+
+7) Watch nvidia-smi in host
