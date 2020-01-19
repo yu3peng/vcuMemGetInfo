@@ -1,5 +1,4 @@
 # ls /usr/lib64 -l --time-style=long-iso | grep "2020-01-09 16:43" | awk '{print $8}'
-
 libcuda.so
 libcuda.so.1
 libcuda.so.418.87.00
