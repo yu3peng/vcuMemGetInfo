@@ -51,7 +51,7 @@ ls /usr/bin -l --time-style=long-iso | grep "XXXX-XX-XX XX:XX" | awk '{print $8}
 Get install driver file name in /usr/lib64 with this shell command (change XXXX-XX-XX XX:XX with the time of installing driver)
 
 ```shell
-ls /usr/lib64 -l --time-style=long-iso | grep "2020-01-09 16:43" | awk '{print $8}' > usr_lib64-nvidia-driver
+ls /usr/lib64 -l --time-style=long-iso | grep "XXXX-XX-XX XX:XX" | awk '{print $8}' > usr_lib64-nvidia-driver
 ```
 
 Make run_container.sh like:
