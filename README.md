@@ -36,7 +36,7 @@ docker run -v /home/gpu:/home/gpu --gpus all,capabilities=utilities -it tensorfl
 
 5.2) Docker version < 19.03
 
-######################################################################################################################################
+#########################################################################################################
 
 docker run --device /dev/nvidia0:/dev/nvidia0 --device /dev/nvidiactl:/dev/nvidiactl --device /dev/nvidia-uvm:/dev/nvidia-uvm --device /dev/nvidia-uvm-tools:/dev/nvidia-uvm-tools -v /usr/bin/nvidia-driver-file*:/usr/binnvidia-driver-file* -v /usr/lib64/nvidia-driver-file*:/usr/lib/nvidia-driver-file* -v /home/gpu:/home/gpu -it tensorflow/tensorflow:1.13.1-gpu-py3 bash
 
