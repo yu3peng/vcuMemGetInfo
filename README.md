@@ -24,6 +24,10 @@ vi cuMemGetInfo.c
 gcc cuMemGetInfo.c -fPIC -shared -o vcuMemGetInfo.so   
 ```
 
+[CNN_TensorFlow.py](./CNN_TensorFlow.py)
+
+[cuMemGetInfo.c](./cuMemGetInfo.c)
+
 4) Install docker.
 
 5) Run container with GPU
