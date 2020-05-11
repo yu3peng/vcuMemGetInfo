@@ -4,8 +4,8 @@ import tensorflow as tf
 from numpy.random import RandomState
 #导入numpy工具包，生成模拟数据集
 
-batch_size = 10
-#定义训练数据batch的大小
+batch_size = 8
+#定义训练数据batch的大小，这个值越大，一步运算需要运行的时间越长
 
 w1 = tf.Variable(tf.random_normal([2,3],stddev=1,seed=1))
 w2 = tf.Variable(tf.random_normal([3,1],stddev=1,seed=1))
@@ -26,7 +26,7 @@ train_step = tf.train.AdamOptimizer(0.001).minimize(cross_entropy)
 
 rdm = RandomState(1)
 dataset_size = 128
-#产生128组数据
+#产生128组数据，这个值越大，经过的步数越多，之后数据归为-0
 X = rdm.rand(dataset_size,2)
 Y = [[int(x1+x2 < 1)] for (x1,x2) in X]
 #将所有x1+x2<1的样本视为正样本，表示为1；其余为0
