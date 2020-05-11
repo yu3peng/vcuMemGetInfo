@@ -25,7 +25,7 @@ train_step = tf.train.AdamOptimizer(0.001).minimize(cross_entropy)
 #定义损失函数和反向传播算法
 
 rdm = RandomState(1)
-dataset_size = 128
+dataset_size = 128000
 #产生128组数据，这个值越大，经过的步数越多，之后数据归为-0
 X = rdm.rand(dataset_size,2)
 Y = [[int(x1+x2 < 1)] for (x1,x2) in X]
