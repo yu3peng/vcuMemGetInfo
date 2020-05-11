@@ -41,7 +41,7 @@ with tf.Session() as sess:
     print(sess.run(w2))
     #打印出训练网络之前网络参数的值
 
-    STEPS = 500000
+    STEPS = 900000
     #设置训练的轮数
     for i in range(STEPS):
         start = (i * batch_size) % dataset_size
