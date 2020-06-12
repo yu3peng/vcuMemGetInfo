@@ -103,6 +103,3 @@ python CNN_TensorFlow.py
 ```
 
 7) Watch nvidia-smi in host
-
-
-Info:[浅谈 docker 挂载 GPU 原理](https://www.cnblogs.com/oolo/p/11679733.html)
