@@ -103,3 +103,7 @@ python CNN_TensorFlow.py
 ```
 
 7) Watch nvidia-smi in host
+
+8) FYI:
+    1. [一种vGPU方案：控制GPU内存使用上限](https://blog.spider.im/post/control-gpu-memory/)
+    2. [训练神经网络的简单例子（TensorFlow平台下Python实现）](https://blog.csdn.net/Jaster_wisdom/article/details/78018653)
