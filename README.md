@@ -97,6 +97,6 @@ python CNN_TensorFlow.py
 在主机上使用 `nvidia-smi` 查看 GPU 使用情况
 
 ## 参考:
-    1. [一种vGPU方案：控制GPU内存使用上限](https://blog.spider.im/post/control-gpu-memory/)
-    2. [训练神经网络的简单例子（TensorFlow平台下Python实现）](https://blog.csdn.net/Jaster_wisdom/article/details/78018653)
-    3. [GPU 共享三：井水不犯河水](https://zw0610.github.io/notes-cn/gpu-sharing-3.html)
+[一种vGPU方案：控制GPU内存使用上限](https://blog.spider.im/post/control-gpu-memory/)
+[训练神经网络的简单例子（TensorFlow平台下Python实现）](https://blog.csdn.net/Jaster_wisdom/article/details/78018653)
+[GPU 共享三：井水不犯河水](https://zw0610.github.io/notes-cn/gpu-sharing-3.html)
