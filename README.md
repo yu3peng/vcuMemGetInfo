@@ -33,7 +33,7 @@ gcc cuMemGetInfo.c -fPIC -shared -o vcuMemGetInfo.so
 
 ### Docker version >= 19.03 
 
-docker 19.03 于 2019 年 7 月正式发布，[增加了对 --gpus 选项的支持，在 docker 里面想读取 nvidia 显卡再也不需要额外的安装 nvidia-docker[(https://www.jianshu.com/p/32ad4f448fe5)
+docker 19.03 于 2019 年 7 月正式发布，[增加了对 --gpus 选项的支持，在 docker 里面想读取 nvidia 显卡再也不需要额外的安装 nvidia-docker](https://www.jianshu.com/p/32ad4f448fe5)
 
 ```shell
 docker run -v /home/gpu:/home/gpu --gpus all,capabilities=utilities -it tensorflow/tensorflow:1.13.1-gpu-py3 bash
