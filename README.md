@@ -27,6 +27,8 @@ gcc cuMemGetInfo.c -fPIC -shared -o vcuMemGetInfo.so
 
 ## 安装 docker
 
+安装方式可以参考：[史上最全（全平台）docker安装方法！](https://zhuanlan.zhihu.com/p/54147784)
+
 ## 运行使用 GPU 的容器
 
 ### Docker version >= 19.03 
