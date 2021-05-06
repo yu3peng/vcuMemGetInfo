@@ -85,11 +85,6 @@ chmod 755 container_driver.sh
 ./container_driver.sh
 ```
 
-```shell
-chmod 755 run_container.sh
-./run_container.sh
-```
-
 6) 在容器中运行业务文件
 
 ```shell
